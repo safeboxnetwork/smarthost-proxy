@@ -1,0 +1,185 @@
+{
+	"main": {
+		"SERVICE_NAME": "public-proxy",
+		"DOMAIN": "null" 
+	},
+	"networks": [
+		{
+			"NAME": "loadbalancer",
+			"DRIVER": "bridge",
+			"SUBNET": "172.18.100.0/24",	
+			"RANGE": "172.18.100.0/24",
+			"GATEWAY": "172.18.100.1"
+		},
+		{
+			"NAME": "backend-1",
+			"DRIVER": "bridge",
+			"SUBNET": "172.18.101.0/24",	
+			"RANGE": "172.18.101.0/24",
+			"GATEWAY": "172.18.101.1"
+		},
+		{
+			"NAME": "backend-2",
+			"DRIVER": "bridge",
+			"SUBNET": "172.18.102.0/24",	
+			"RANGE": "172.18.102.0/24",
+			"GATEWAY": "172.18.102.1"
+		}
+	],
+	"containers": [
+		{ 
+			"IMAGE": "registry.format.hu/haproxy:2.2.5",
+			"NAME": "loadbalancer-27dhuwdh",
+			"ROLES": "frontend-proxy",
+			"MEMORY": "128M",
+			"IP": "172.18.100.2",
+			"NETWORK": "loadbalancer",
+			"DNS": [ "172.18.255.2" ],
+			"ENVS": [
+                                {   
+                                "NAME": "letsencrypt",
+                                "VALUE": "letsencrypt"
+                                },  
+                                {   
+                                "NAME": "backend1",
+                                "VALUE": "backend1"
+                                },  
+                                {   
+                                "NAME": "backend2",
+                                "VALUE": "backend2"
+                                }   
+                                ],  
+                        "READYNESS": [
+                                {"tcp": "80"},
+                                {"HTTP": "8080"},
+                                {"EXEC": "/ready.sh"}
+                                ], 
+			"PORTS": [
+    				{
+				 "SOURCE": "80",
+				 "DEST": "80",
+				 "TYPE": "tcp"
+				},
+    				{
+				 "SOURCE": "443",
+				 "DEST": "443",
+				 "TYPE": "tcp"
+				}
+				 ],	
+			"VOLUMES": [
+				{	
+				"SOURCE": "/etc/system/log/public-proxy/loadbalancer",
+				"DEST": "/var/log/haproxy",
+				"TYPE": "rw"
+				}
+				],
+			"READYNESS": [
+			        {"tcp": "80"},
+			        {"HTTP": "8080"},
+				{"EXEC": "/ready.sh"}
+				],
+			"EXTRA": "--label ROLES=loadbalancer" ,
+			"DEPEND": [ "proxy-dns" ],
+			"START_ON_BOOT": "true",
+			"CMD": "null",
+			"PRE_START": [ "firewall_dns-behbeq37s6" ],
+			"POST_START": [ "firewall_wireguard-27dhuwdh", "firewall_openvpn-27dhuwdi" ]
+		},
+		{ 
+			"IMAGE": "registry.format.hu/nginx:1.21",
+			"NAME": "backend-zc93hh9u",
+			"ROLES": "backend-proxy",
+			"MEMORY": "64M",
+			"IP": "172.18.101.2",
+			"NETWORK": "backend-1",
+			"PORTS": [
+    				{
+				 "SOURCE": "null",
+				 "DEST": "80",
+				 "TYPE": "tcp"
+				},
+    				{
+				 "SOURCE": "null",
+				 "DEST": "443",
+				 "TYPE": "tcp"
+				}
+				 ],	
+			"VOLUMES": [
+				{	
+				"SOURCE": "/etc/system/config/public-proxy/nginx",
+				"DEST": "/etc/nginx/conf.d",
+				"TYPE": "ro"
+				},
+				{	
+				"SOURCE": "/etc/ssl/keys",
+				"DEST": "/etc/ssl/keys",
+				"TYPE": "ro"
+				},
+				{	
+				"SOURCE": "/etc/system/log/public-proxy/backend-1",
+				"DEST": "/var/log/nginx",
+				"TYPE": "rw"
+				}
+				],
+			"READYNESS": [
+			        {"tcp": "80"},
+			        {"HTTP": "8080"},
+				{"EXEC": "/ready.sh"}
+				],
+			"EXTRA": "null",
+			"DEPEND": "null",
+			"START_ON_BOOT": "true",
+			"CMD": "null",
+			"PRE_START": "null",
+			"POST_START": [ "firewall_backend1-zc93hh9u" ]
+		},
+		{ 
+			"IMAGE": "registry.format.hu/nginx:1.21",
+			"NAME": "backend-g4rg38gr83",
+			"ROLES": "backend-proxy",
+			"MEMORY": "64M",
+			"IP": "172.18.102.2",
+			"NETWORK": "backend-2",
+			"PORTS": [
+    				{
+				 "SOURCE": "null",
+				 "DEST": "80",
+				 "TYPE": "tcp"
+				},
+    				{
+				 "SOURCE": "null",
+				 "DEST": "443",
+				 "TYPE": "tcp"
+				}
+				 ],	
+			"VOLUMES": [
+				{	
+				"SOURCE": "/etc/system/config/public-proxy/nginx",
+				"DEST": "/etc/nginx/conf.d",
+				"TYPE": "ro"
+				},
+				{	
+				"SOURCE": "/etc/ssl/keys",
+				"DEST": "/etc/ssl/keys",
+				"TYPE": "ro"
+				},
+				{	
+				"SOURCE": "/etc/system/log/public-proxy/backend-2",
+				"DEST": "/var/log/nginx",
+				"TYPE": "rw"
+				}
+				],
+			"READYNESS": [
+			        {"tcp": "80"},
+			        {"HTTP": "8080"},
+				{"EXEC": "/ready.sh"}
+				],
+			"EXTRA": "null",
+			"DEPEND": "null",
+			"START_ON_BOOT": "true",
+			"CMD": "null",
+			"PRE_START": "null",
+			"POST_START": [ "firewall_backend2-g4rg38gr83" ]
+		}
+	]
+}

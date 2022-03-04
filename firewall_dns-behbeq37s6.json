@@ -1,0 +1,73 @@
+{
+	"main": {
+		"SERVICE_NAME": "firewalls",
+		"DOMAIN": "null" 
+	},
+	"containers": [
+		{ 
+			"IMAGE": "registry.format.hu/firewall",
+			"NAME": "null",
+			"MEMORY": "64M",
+			"IP": "null",
+			"NETWORK": "host",
+			"VOLUMES": [
+				{
+				"SOURCE": "/run/",
+				"DEST": "/run/",
+				"TYPE": "rw"
+				},
+				{
+				"SOURCE": "/etc/user/config/services",
+				"DEST": "/services",
+				"TYPE": "ro"
+				}
+				],
+			"PORTS": [ ],
+			"READYNESS": [
+			        {"tcp": ""},
+			        {"HTTP": ""},
+				{"EXEC": "/ready.sh"}
+				],
+                        "ENVS": [
+                                {          
+                                "NAME": "CHAIN",
+                                "VALUE": "DOCKER-USER"
+                                }, 
+                                {          
+                                "NAME": "SOURCE_IP",
+                                "VALUE": "172.18.100.2"
+                                }, 
+                                {          
+                                "NAME": "TARGET_IP",
+                                "VALUE": "172.18.255.2"
+                                }, 
+                                {          
+                                "NAME": "TYPE",
+                                "VALUE": "udp"
+                                }, 
+                                {          
+                                "NAME": "TARGET_PORT_1",
+                                "VALUE": "53"
+                                }, 
+                                {          
+                                "NAME": "TARGET_PORT_2",
+                                "VALUE": "67"
+                                }, 
+                                {          
+                                "NAME": "TARGET_PORT_3",
+                                "VALUE": "68"
+                                }, 
+                                {          
+                                "NAME": "COMMENT",
+                                "VALUE": "behbeq37s6"
+                                }  
+                                ], 
+			"EXTRA": "--privileged",
+			"DEPEND": "null",
+			"START_ON_BOOT": "false",
+			"CMD": "null",
+			"PRE_START": "null",
+			"POST_START": "null"
+		}
+	]
+}

@@ -1,0 +1,66 @@
+{
+	"main": {
+		"SERVICE_NAME": "proxy-dns",
+		"DOMAIN": "null" 
+	},
+	"networks": [
+		{
+			"NAME": "proxy-dns",
+			"DRIVER": "bridge",
+			"SUBNET": "172.18.255.0/24",	
+			"RANGE": "172.18.255.0/24",
+			"GATEWAY": "172.18.255.1"
+		}
+	],
+	"containers": [
+		{ 
+			"IMAGE": "registry.format.hu/dnsmasq:latest",
+			"NAME": "proxy_dns-efhuh3g1",
+			"MEMORY": "64M",
+			"IP": "172.18.255.2",
+			"NETWORK": "proxy-dns",
+			"VOLUMES": [
+				{	
+				"SOURCE": "/etc/user/data/dnsmasq/",
+				"DEST": "/etc/dnsmasq.d/",
+				"TYPE": "ro"
+				},
+				{	
+				"SOURCE": "/etc/system/log/dnsmasq/",
+				"DEST": "/var/log/dnsmasq/",
+				"TYPE": "rw"
+				}
+				],
+			"PORTS": [ 
+    				{
+				 "SOURCE": "null",
+				 "DEST": "53",
+				 "TYPE": "udp"
+				},
+    				{
+				 "SOURCE": "null",
+				 "DEST": "67",
+				 "TYPE": "udp"
+				},
+    				{
+				 "SOURCE": "null",
+				 "DEST": "68",
+				 "TYPE": "udp"
+				}
+				  ],
+			"READYNESS": [
+			        {"tcp": ""},
+			        {"HTTP": ""},
+				{"EXEC": "/ready.sh"}
+				],
+			"ENVS": [
+				],
+			"EXTRA": "null",
+			"DEPEND": "null",
+			"START_ON_BOOT": "true",
+			"CMD": "null",
+			"PRE_START": "null",
+			"POST_START": "null"
+		}
+	]
+}
