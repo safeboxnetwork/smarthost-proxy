@@ -1,4 +1,4 @@
- },
+{
         "proxy_scheduler_local": {
                 "DOCKER_REGISTRY_URL": "registry.format.hu",
                 "LETSENCRYPT_URL": "letsencrypt.org",
