@@ -5,7 +5,7 @@
 	},
 	"networks": [
 		{
-			"NAME": "proxy-dns",
+			"NAME": "proxy_dns-public",
 			"DRIVER": "bridge",
 			"SUBNET": "172.18.255.0/24",	
 			"RANGE": "172.18.255.0/24",
@@ -18,15 +18,15 @@
 			"NAME": "proxy_dns-efhuh3g1",
 			"MEMORY": "64M",
 			"IP": "172.18.255.2",
-			"NETWORK": "proxy-dns",
+			"NETWORK": "proxy_dns-public",
 			"VOLUMES": [
 				{	
-				"SOURCE": "/etc/user/data/dnsmasq/",
+				"SOURCE": "/etc/system/data/proxy-dns/",
 				"DEST": "/etc/dnsmasq.d/",
-				"TYPE": "ro"
+				"TYPE": "rw"
 				},
 				{	
-				"SOURCE": "/etc/system/log/dnsmasq/",
+				"SOURCE": "/etc/system/log/proxy-dns/",
 				"DEST": "/var/log/dnsmasq/",
 				"TYPE": "rw"
 				}

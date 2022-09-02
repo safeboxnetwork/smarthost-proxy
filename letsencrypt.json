@@ -1,0 +1,49 @@
+{
+	"main": {
+		"SERVICE_NAME": "letsencrypt",
+		"DOMAIN": "null" 
+	},
+	"networks": [
+		{
+			"NAME": "letsencrypt",
+			"DRIVER": "bridge",
+			"SUBNET": "172.18.254.0/24",	
+			"RANGE": "172.18.254.0/24",
+			"GATEWAY": "172.18.254.1"
+		}
+	],
+	"containers": [
+		{ 
+			"IMAGE": "registry.format.hu/letsencrypt:latest",
+			"NAME": "letsencrypt-rz56t7ir",
+			"MEMORY": "64M",
+			"IP": "172.18.254.254",
+			"NETWORK": "letsencrypt",
+			"VOLUMES": [
+				{
+				"SOURCE": "/etc/ssl/keys/",
+				"DEST": "/acme.sh/",
+				"TYPE": "rw"
+				},
+				{	
+				"SOURCE": "/etc/user/config/smarthost-domains",
+				"DEST": "/domains",
+				"TYPE": "ro"
+				}
+				],
+			"PORTS": [ ],
+			"ENV_FILES": [ "/etc/user/config/user.json" ],
+			"READYNESS": [
+			        {"tcp": ""},
+			        {"HTTP": ""},
+				{"EXEC": "/ready.sh"}
+				],
+			"EXTRA": "",
+			"DEPEND": "null",
+			"START_ON_BOOT": "false",
+			"CMD": "null",
+			"PRE_START": "null",
+			"POST_START": [ "firewall-29eexhrh" ]
+		}
+	]
+}

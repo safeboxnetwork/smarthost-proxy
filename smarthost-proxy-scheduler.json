@@ -1,0 +1,67 @@
+{
+        "main": {
+                "SERVICE_NAME": "smarthost-proxy-scheduler",
+                "DOMAIN": "null"
+        },
+        "containers": [
+                {
+                        "IMAGE": "registry.format.hu/proxy-scheduler:latest",
+                        "NAME": "proxy_scheduler_local-ifhiwhth",
+                        "MEMORY": "64M",
+                        "IP": "null",
+                        "NETWORK": "host",
+                        "VOLUMES": [
+                                {
+                                "SOURCE": "/etc/user/config/smarthost-domains",
+                                "DEST": "/domains",
+                                "TYPE": "ro"
+                                },
+                                {
+                                "SOURCE": "/etc/ssl/keys",
+                                "DEST": "/keys",
+                                "TYPE": "rw"
+                                },
+                                {
+                                "SOURCE": "/etc/ssl/certs/",
+                                "DEST": "/etc/ssl/certs/",
+                                "TYPE": "ro"
+                                },
+                                {
+                                "SOURCE": "/etc/system/config/smarthost-proxy/nginx",
+                                "DEST": "/proxy_config",
+                                "TYPE": "rw"
+                                },
+                                {
+                                "SOURCE": "/etc/user/config/services/smarthost-proxy.json",
+                                "DEST": "/smarthost-proxy.json",
+                                "TYPE": "ro"
+                                },
+                                {
+                                "SOURCE": "/var/run/docker.sock",
+                                "DEST": "/var/run/docker.sock",
+                                "TYPE": "rw"
+                                },
+                                {
+                                "SOURCE": "/usr/bin/docker",
+                                "DEST": "/usr/bin/docker",
+                                "TYPE": "ro"
+                                }
+                                ],
+                        "PORTS": [ ],
+                        "READYNESS": [
+                                {"tcp": ""},
+                                {"HTTP": ""},
+                                {"EXEC": "/ready.sh"}
+                                ],
+                        "ENVS": [
+				 ],
+			"ENV_FILES": [ "/etc/system/config/proxy.json" ],
+                        "EXTRA": "null",
+                        "DEPEND": "null",
+                        "START_ON_BOOT": "true",
+                        "CMD": "null",
+                        "PRE_START": "null",
+                        "POST_START": "null"
+                }
+        ]
+}

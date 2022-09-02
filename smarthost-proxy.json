@@ -1,40 +1,40 @@
 {
 	"main": {
-		"SERVICE_NAME": "public-proxy",
+		"SERVICE_NAME": "smarthost-proxy",
 		"DOMAIN": "null" 
 	},
 	"networks": [
 		{
-			"NAME": "loadbalancer",
+			"NAME": "smarthost-loadbalancer",
 			"DRIVER": "bridge",
-			"SUBNET": "172.18.100.0/24",	
-			"RANGE": "172.18.100.0/24",
-			"GATEWAY": "172.18.100.1"
+			"SUBNET": "172.18.103.0/24",	
+			"RANGE": "172.18.103.0/24",
+			"GATEWAY": "172.18.103.1"
 		},
 		{
-			"NAME": "backend-1",
+			"NAME": "smarthost_backend-1",
 			"DRIVER": "bridge",
-			"SUBNET": "172.18.101.0/24",	
-			"RANGE": "172.18.101.0/24",
-			"GATEWAY": "172.18.101.1"
+			"SUBNET": "172.18.104.0/24",	
+			"RANGE": "172.18.104.0/24",
+			"GATEWAY": "172.18.104.1"
 		},
 		{
-			"NAME": "backend-2",
+			"NAME": "smarthost_backend-2",
 			"DRIVER": "bridge",
-			"SUBNET": "172.18.102.0/24",	
-			"RANGE": "172.18.102.0/24",
-			"GATEWAY": "172.18.102.1"
+			"SUBNET": "172.18.105.0/24",	
+			"RANGE": "172.18.105.0/24",
+			"GATEWAY": "172.18.105.1"
 		}
 	],
 	"containers": [
 		{ 
 			"IMAGE": "registry.format.hu/haproxy:2.5.4",
-			"NAME": "loadbalancer-27dhuwdh",
-			"ROLES": "frontend-proxy",
+			"NAME": "loadbalancer-27dhuwth",
+			"ROLES": "smarthost-frontend-proxy",
 			"MEMORY": "128M",
-			"IP": "172.18.100.2",
-			"NETWORK": "loadbalancer",
-			"DNS": [ "172.18.255.2" ],
+			"IP": "172.18.103.2",
+			"NETWORK": "smarthost-loadbalancer",
+			"DNS": [ "proxy_dns" ],
 			"ENVS": [
                                 {   
                                 "NAME": "letsencrypt",
@@ -42,11 +42,11 @@
                                 },  
                                 {   
                                 "NAME": "backend1",
-                                "VALUE": "backend1"
+                                "VALUE": "172.18.104.2"
                                 },  
                                 {   
                                 "NAME": "backend2",
-                                "VALUE": "backend2"
+                                "VALUE": "172.18.105.2"
                                 }   
                                 ],  
                         "READYNESS": [
@@ -56,19 +56,19 @@
                                 ], 
 			"PORTS": [
     				{
-				 "SOURCE": "80",
+				 "SOURCE": "null",
 				 "DEST": "80",
 				 "TYPE": "tcp"
 				},
     				{
-				 "SOURCE": "443",
+				 "SOURCE": "null",
 				 "DEST": "443",
 				 "TYPE": "tcp"
 				}
 				 ],	
 			"VOLUMES": [
 				{	
-				"SOURCE": "/etc/system/log/public-proxy/loadbalancer",
+				"SOURCE": "/etc/system/log/smarthost-proxy/loadbalancer",
 				"DEST": "/var/log/haproxy",
 				"TYPE": "rw"
 				}
@@ -82,16 +82,16 @@
 			"DEPEND": [ "proxy-dns" ],
 			"START_ON_BOOT": "true",
 			"CMD": "null",
-			"PRE_START": [ "firewall_dns-behbeq37s6" ],
-			"POST_START": [ "firewall_wireguard-27dhuwdh", "firewall_openvpn-27dhuwdi" ]
+			"PRE_START": [ "firewall_dns-behbeq37th" ],
+			"POST_START": [ "firewall-smarhost-loadbalancer" ]
 		},
 		{ 
 			"IMAGE": "registry.format.hu/nginx:1.21",
-			"NAME": "backend-zc93hh9u",
-			"ROLES": "backend-proxy",
+			"NAME": "backend-zc93hhth",
+			"ROLES": "smarthost-backend-proxy",
 			"MEMORY": "64M",
-			"IP": "172.18.101.2",
-			"NETWORK": "backend-1",
+			"IP": "172.18.104.2",
+			"NETWORK": "smarthost_backend-1",
 			"PORTS": [
     				{
 				 "SOURCE": "null",
@@ -106,7 +106,7 @@
 				 ],	
 			"VOLUMES": [
 				{	
-				"SOURCE": "/etc/system/config/public-proxy/nginx",
+				"SOURCE": "/etc/system/config/smarthost-proxy/nginx",
 				"DEST": "/etc/nginx/conf.d",
 				"TYPE": "ro"
 				},
@@ -116,7 +116,7 @@
 				"TYPE": "ro"
 				},
 				{	
-				"SOURCE": "/etc/system/log/public-proxy/backend-1",
+				"SOURCE": "/etc/system/log/smarthost-proxy/backend-1",
 				"DEST": "/var/log/nginx",
 				"TYPE": "rw"
 				}
@@ -131,15 +131,15 @@
 			"START_ON_BOOT": "true",
 			"CMD": "null",
 			"PRE_START": "null",
-			"POST_START": [ "firewall_backend1-zc93hh9u" ]
+			"POST_START": [ "firewall_backend1-zc93hhth" ]
 		},
 		{ 
 			"IMAGE": "registry.format.hu/nginx:1.21",
-			"NAME": "backend-g4rg38gr83",
-			"ROLES": "backend-proxy",
+			"NAME": "backend-g4rg38th",
+			"ROLES": "smarthost-backend-proxy",
 			"MEMORY": "64M",
-			"IP": "172.18.102.2",
-			"NETWORK": "backend-2",
+			"IP": "172.18.105.2",
+			"NETWORK": "smarthost_backend-2",
 			"PORTS": [
     				{
 				 "SOURCE": "null",
@@ -154,7 +154,7 @@
 				 ],	
 			"VOLUMES": [
 				{	
-				"SOURCE": "/etc/system/config/public-proxy/nginx",
+				"SOURCE": "/etc/system/config/smarthost-proxy/nginx",
 				"DEST": "/etc/nginx/conf.d",
 				"TYPE": "ro"
 				},
@@ -164,7 +164,7 @@
 				"TYPE": "ro"
 				},
 				{	
-				"SOURCE": "/etc/system/log/public-proxy/backend-2",
+				"SOURCE": "/etc/system/log/smarthost-proxy/backend-2",
 				"DEST": "/var/log/nginx",
 				"TYPE": "rw"
 				}
@@ -179,7 +179,7 @@
 			"START_ON_BOOT": "true",
 			"CMD": "null",
 			"PRE_START": "null",
-			"POST_START": [ "firewall_backend2-g4rg38gr83" ]
+			"POST_START": [ "firewall_backend2-g4rg38th" ]
 		}
 	]
 }

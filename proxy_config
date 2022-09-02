@@ -1,0 +1,21 @@
+ },
+        "proxy_scheduler_local": {
+                "DOCKER_REGISTRY_URL": "registry.format.hu",
+                "LETSENCRYPT_URL": "letsencrypt.org",
+                "LETSENCRYPT_SERVICE_NAME": "letsencrypt.json",
+                "CERT_DIR": "/keys",
+                "DOMAIN_DIR": "/domains",
+                "PROXY_SERVICE_FILE": "smarthost-proxy.json",
+                "PROXY_CONFIG_DIR": "/proxy_config",
+                "PROXY_TYPE": "",
+                "TIMEOUT": "5",
+                "RESTART": "3",
+                "ROLE": "smarthost-backend-proxy",
+                "SERVICE_NAME": "smarthost-proxy"
+        },
+        "loadbalancer": {
+                "letsencrypt": "letsencrypt",
+                "backend1": "backend1",
+                "backend2": "backend2"
+        }
+}
