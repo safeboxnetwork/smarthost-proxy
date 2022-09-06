@@ -35,20 +35,7 @@
 			"IP": "172.18.103.2",
 			"NETWORK": "smarthost-loadbalancer",
 			"DNS": [ "proxy_dns" ],
-			"ENVS": [
-                                {   
-                                "NAME": "letsencrypt",
-                                "VALUE": "letsencrypt"
-                                },  
-                                {   
-                                "NAME": "backend1",
-                                "VALUE": "172.18.104.2"
-                                },  
-                                {   
-                                "NAME": "backend2",
-                                "VALUE": "172.18.105.2"
-                                }   
-                                ],  
+			"ENVS": [ ],  
                         "READYNESS": [
                                 {"tcp": "80"},
                                 {"HTTP": "8080"},
