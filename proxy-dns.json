@@ -55,7 +55,7 @@
 				],
 			"ENVS": [
 				],
-			"EXTRA": "null",
+			"EXTRA": "--restart unless-stopped",
 			"DEPEND": "null",
 			"START_ON_BOOT": "true",
 			"CMD": "null",

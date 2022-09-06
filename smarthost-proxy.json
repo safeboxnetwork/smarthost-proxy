@@ -82,8 +82,8 @@
 			"DEPEND": [ "proxy-dns" ],
 			"START_ON_BOOT": "true",
 			"CMD": "null",
-			"PRE_START": [ "firewall_dns-behbeq37th" ],
-			"POST_START": [ "firewall-smarhost-loadbalancer" ]
+			"PRE_START": [ "firewall-dns" ],
+			"POST_START": [ "firewall-letsencrypt", "firewall-smarhost-loadbalancer" ]
 		},
 		{ 
 			"IMAGE": "registry.format.hu/nginx:1.21",

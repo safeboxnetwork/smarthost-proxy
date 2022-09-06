@@ -6,7 +6,7 @@
 	"containers": [
 		{ 
 			"IMAGE": "registry.format.hu/firewall",
-			"NAME": "null",
+			"NAME": "firewall",
 			"MEMORY": "64M",
 			"IP": "null",
 			"NETWORK": "host",
@@ -28,41 +28,33 @@
 			        {"HTTP": ""},
 				{"EXEC": "/ready.sh"}
 				],
-                        "ENVS": [
+                        "ENVS": [ 
                                 {          
                                 "NAME": "CHAIN",
                                 "VALUE": "DOCKER-USER"
                                 }, 
                                 {          
                                 "NAME": "SOURCE_IP",
-                                "VALUE": "172.18.100.2"
+                                "VALUE": "172.18.103.2"
                                 }, 
                                 {          
                                 "NAME": "TARGET_IP",
-                                "VALUE": "172.18.255.2"
+                                "VALUE": "172.18.254.254"
                                 }, 
                                 {          
                                 "NAME": "TYPE",
-                                "VALUE": "udp"
+                                "VALUE": "tcp"
                                 }, 
                                 {          
-                                "NAME": "TARGET_PORT_1",
-                                "VALUE": "53"
-                                }, 
-                                {          
-                                "NAME": "TARGET_PORT_2",
-                                "VALUE": "67"
-                                }, 
-                                {          
-                                "NAME": "TARGET_PORT_3",
-                                "VALUE": "68"
+                                "NAME": "TARGET_PORT",
+                                "VALUE": "80"
                                 }, 
                                 {          
                                 "NAME": "COMMENT",
-                                "VALUE": "behbeq37s6"
+                                "VALUE": "29eexhrh"
                                 }  
                                 ], 
-			"EXTRA": "--privileged",
+			"EXTRA": "--privileged --rm",
 			"DEPEND": "null",
 			"START_ON_BOOT": "false",
 			"CMD": "null",

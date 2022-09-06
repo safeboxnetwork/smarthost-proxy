@@ -1,0 +1,73 @@
+{
+	"main": {
+		"SERVICE_NAME": "firewalls",
+		"DOMAIN": "null" 
+	},
+	"containers": [
+		{ 
+			"IMAGE": "registry.format.hu/firewall",
+			"NAME": "firewall",
+			"MEMORY": "64M",
+			"IP": "null",
+			"NETWORK": "host",
+			"VOLUMES": [
+				{
+				"SOURCE": "/run/",
+				"DEST": "/run/",
+				"TYPE": "rw"
+				},
+				{
+				"SOURCE": "/etc/user/config/services",
+				"DEST": "/services",
+				"TYPE": "ro"
+				}
+				],
+			"PORTS": [ ],
+			"READYNESS": [
+			        {"tcp": ""},
+			        {"HTTP": ""},
+				{"EXEC": "/ready.sh"}
+				],
+                        "ENVS": [
+                                {          
+                                "NAME": "CHAIN",
+                                "VALUE": "DOCKER-USER"
+                                }, 
+                                {          
+                                "NAME": "SOURCE_IP_1",
+                                "VALUE": "172.18.101.2"
+                                }, 
+                                {          
+                                "NAME": "SOURCE_IP_2",
+                                "VALUE": "172.18.102.2"
+                                }, 
+                                {          
+                                "NAME": "TARGET_IP",
+                                "VALUE": "172.18.103.2"
+                                }, 
+                                {          
+                                "NAME": "TYPE",
+                                "VALUE": "tcp"
+                                }, 
+                                {          
+                                "NAME": "TARGET_PORT_1",
+                                "VALUE": "80"
+                                }, 
+                                {          
+                                "NAME": "TARGET_PORT_2",
+                                "VALUE": "443"
+                                }, 
+                                {          
+                                "NAME": "COMMENT",
+                                "VALUE": "27dhuwth"
+                                }  
+                                ], 
+			"EXTRA": "--privileged --rm",
+			"DEPEND": "null",
+			"START_ON_BOOT": "false",
+			"CMD": "null",
+			"PRE_START": "null",
+			"POST_START": "null"
+		}
+	]
+}

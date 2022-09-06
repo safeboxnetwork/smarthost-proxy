@@ -6,7 +6,7 @@
 	"containers": [
 		{ 
 			"IMAGE": "registry.format.hu/firewall",
-			"NAME": "null",
+			"NAME": "firewall",
 			"MEMORY": "64M",
 			"IP": "null",
 			"NETWORK": "host",
@@ -35,11 +35,11 @@
                                 }, 
                                 {          
                                 "NAME": "SOURCE_IP",
-                                "VALUE": "172.18.100.2"
+                                "VALUE": "172.18.103.2"
                                 }, 
                                 {          
                                 "NAME": "TARGET_IP",
-                                "VALUE": "172.18.102.2"
+                                "VALUE": "172.18.105.2"
                                 }, 
                                 {          
                                 "NAME": "TYPE",
@@ -55,10 +55,10 @@
                                 }, 
                                 {          
                                 "NAME": "COMMENT",
-                                "VALUE": "g4rg38gr83"
+                                "VALUE": "g4rg38th"
                                 }  
                                 ], 
-			"EXTRA": "--privileged",
+			"EXTRA": "--privileged --rm",
 			"DEPEND": "null",
 			"START_ON_BOOT": "false",
 			"CMD": "null",

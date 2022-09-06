@@ -15,7 +15,7 @@
 	"containers": [
 		{ 
 			"IMAGE": "registry.format.hu/letsencrypt:latest",
-			"NAME": "letsencrypt-rz56t7ir",
+			"NAME": "letsencrypt",
 			"MEMORY": "64M",
 			"IP": "172.18.254.254",
 			"NETWORK": "letsencrypt",
@@ -38,7 +38,7 @@
 			        {"HTTP": ""},
 				{"EXEC": "/ready.sh"}
 				],
-			"EXTRA": "",
+			"EXTRA": "--rm",
 			"DEPEND": "null",
 			"START_ON_BOOT": "false",
 			"CMD": "null",

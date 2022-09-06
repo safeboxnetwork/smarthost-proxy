@@ -6,8 +6,9 @@
 	"containers": [
 		{ 
 			"IMAGE": "registry.format.hu/firewall",
-			"NAME": "firewall_dns-public",
+			"NAME": "firewall",
 			"MEMORY": "64M",
+			"IP": "null",
 			"NETWORK": "host",
 			"VOLUMES": [
 				{
@@ -34,7 +35,7 @@
                                 }, 
                                 {          
                                 "NAME": "SOURCE_IP",
-                                "VALUE": "172.18.100.2"
+                                "VALUE": "172.18.103.2"
                                 }, 
                                 {          
                                 "NAME": "TARGET_IP",
@@ -61,7 +62,7 @@
                                 "VALUE": "behbeq37s6"
                                 }  
                                 ], 
-			"EXTRA": "--privileged",
+			"EXTRA": "--privileged --rm",
 			"DEPEND": "null",
 			"START_ON_BOOT": "false",
 			"CMD": "null",
