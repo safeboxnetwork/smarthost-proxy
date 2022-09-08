@@ -10,6 +10,7 @@
 			"MEMORY": "64M",
 			"IP": "null",
 			"NETWORK": "host",
+			"SCALE": "0",
 			"VOLUMES": [
 				{
 				"SOURCE": "/run/",
