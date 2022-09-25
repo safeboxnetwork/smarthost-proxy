@@ -117,7 +117,7 @@
 			"START_ON_BOOT": "true",
 			"CMD": "null",
 			"PRE_START": "null",
-			"POST_START": [ "firewall_backend1-zc93hhth" ]
+			"POST_START": [ "firewall-backend1" ]
 		},
 		{ 
 			"IMAGE": "registry.format.hu/nginx:1.21",
@@ -165,7 +165,7 @@
 			"START_ON_BOOT": "true",
 			"CMD": "null",
 			"PRE_START": "null",
-			"POST_START": [ "firewall_backend2-g4rg38th" ]
+			"POST_START": [ "firewall-backend2" ]
 		}
 	]
 }
