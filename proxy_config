@@ -13,9 +13,9 @@
                 "ROLE": "smarthost-backend-proxy",
                 "SERVICE_NAME": "smarthost-proxy"
         },
-        "loadbalancer": {
+        "smarthost_loadbalancer": {
                 "letsencrypt": "letsencrypt",
-                "backend1": "backend1",
-                "backend2": "backend2"
+                "backend1": "smarthost_backend1",
+                "backend2": "smarthost_backend2"
         }
 }

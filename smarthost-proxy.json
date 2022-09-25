@@ -29,26 +29,12 @@
 	"containers": [
 		{ 
 			"IMAGE": "registry.format.hu/haproxy:2.5.4",
-			"NAME": "loadbalancer-27dhuwth",
+			"NAME": "smarthost_loadbalancer-27dhuwth",
 			"ROLES": "smarthost-frontend-proxy",
 			"MEMORY": "128M",
 			"IP": "172.18.103.2",
 			"NETWORK": "smarthost-loadbalancer",
 			"DNS": [ "proxy_dns" ],
-			"ENVS": [
-				{
-                                "NAME": "letsencrypt",
-                                "VALUE": "letsencrypt"
-                                },
-                                {
-                                "NAME": "backend1",
-                                "VALUE": "backend1"
-                                },
-                                {
-                                "NAME": "backend2",
-                                "VALUE": "backend2"
-                                }
-				],  
                         "READYNESS": [
                                 {"tcp": "80"},
                                 {"HTTP": "8080"},
@@ -87,7 +73,7 @@
 		},
 		{ 
 			"IMAGE": "registry.format.hu/nginx:1.21",
-			"NAME": "backend-zc93hhth",
+			"NAME": "smarthost_backend1-zc93hhth",
 			"ROLES": "smarthost-backend-proxy",
 			"MEMORY": "64M",
 			"IP": "172.18.104.2",
@@ -135,7 +121,7 @@
 		},
 		{ 
 			"IMAGE": "registry.format.hu/nginx:1.21",
-			"NAME": "backend-g4rg38th",
+			"NAME": "smarthost_backend2-g4rg38th",
 			"ROLES": "smarthost-backend-proxy",
 			"MEMORY": "64M",
 			"IP": "172.18.105.2",

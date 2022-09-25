@@ -21,7 +21,17 @@
 				"SOURCE": "/etc/user/config/services",
 				"DEST": "/services",
 				"TYPE": "ro"
-				}
+				},
+				{
+                                 "SOURCE": "/var/run/docker.sock",
+                                 "DEST": "/var/run/docker.sock",
+                                 "TYPE": "rw"
+                                 },
+                                 {
+                                 "SOURCE": "/usr/bin/docker",
+                                 "DEST": "/usr/bin/docker",
+                                 "TYPE": "ro"
+                                 }
 				],
 			"PORTS": [ ],
 			"READYNESS": [
@@ -30,30 +40,12 @@
 				{"EXEC": "/ready.sh"}
 				],
                         "ENVS": [ 
-                                {          
-                                "NAME": "CHAIN",
-                                "VALUE": "DOCKER-USER"
-                                }, 
-                                {          
-                                "NAME": "SOURCE_IP",
-                                "VALUE": "172.18.103.2"
-                                }, 
-                                {          
-                                "NAME": "TARGET_IP",
-                                "VALUE": "172.18.254.254"
-                                }, 
-                                {          
-                                "NAME": "TYPE",
-                                "VALUE": "tcp"
-                                }, 
-                                {          
-                                "NAME": "TARGET_PORT",
-                                "VALUE": "80"
-                                }, 
-                                {          
-                                "NAME": "COMMENT",
-                                "VALUE": "29eexhrh"
-                                }  
+               			{ "CHAIN": "DOCKER-USER" },
+                                { "SOURCE": "smarthost_loadbalancer" },
+                                { "TARGET": "proxy_dns" },
+                                { "TYPE": "tcp" },
+                                { "TARGET_PORT_1": "80" },
+                                { "COMMENT": "letsencrypt" }
                                 ], 
 			"EXTRA": "--privileged --rm",
 			"DEPEND": "null",

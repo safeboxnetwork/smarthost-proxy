@@ -21,7 +21,17 @@
 				"SOURCE": "/etc/user/config/services",
 				"DEST": "/services",
 				"TYPE": "ro"
-				}
+				},
+				{
+                                 "SOURCE": "/var/run/docker.sock",
+                                 "DEST": "/var/run/docker.sock",
+                                 "TYPE": "rw"
+                                 },
+                                 {
+                                 "SOURCE": "/usr/bin/docker",
+                                 "DEST": "/usr/bin/docker",
+                                 "TYPE": "ro"
+                                 }
 				],
 			"PORTS": [ ],
 			"READYNESS": [
@@ -30,38 +40,14 @@
 				{"EXEC": "/ready.sh"}
 				],
                         "ENVS": [
-                                {          
-                                "NAME": "CHAIN",
-                                "VALUE": "DOCKER-USER"
-                                }, 
-                                {          
-                                "NAME": "SOURCE_IP",
-                                "VALUE": "172.18.103.2"
-                                }, 
-                                {          
-                                "NAME": "TARGET_IP",
-                                "VALUE": "172.18.255.2"
-                                }, 
-                                {          
-                                "NAME": "TYPE",
-                                "VALUE": "udp"
-                                }, 
-                                {          
-                                "NAME": "TARGET_PORT_1",
-                                "VALUE": "53"
-                                }, 
-                                {          
-                                "NAME": "TARGET_PORT_2",
-                                "VALUE": "67"
-                                }, 
-                                {          
-                                "NAME": "TARGET_PORT_3",
-                                "VALUE": "68"
-                                }, 
-                                {          
-                                "NAME": "COMMENT",
-                                "VALUE": "behbeq37s6"
-                                }  
+               			{ "CHAIN": "DOCKER-USER" },
+                                { "SOURCE": "smarthost_loadbalancer" },
+                                { "TARGET": "proxy_dns" },
+                                { "TYPE": "udp" },
+                                { "TARGET_PORT_1": "53" },
+                                { "TARGET_PORT_2": "67" },
+                                { "TARGET_PORT_2": "68" },
+                                { "COMMENT": "smarthost_proxy_dns" }
                                 ], 
 			"EXTRA": "--privileged --rm",
 			"DEPEND": "null",
