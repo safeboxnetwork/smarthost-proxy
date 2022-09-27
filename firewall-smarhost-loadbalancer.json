@@ -21,7 +21,17 @@
 				"SOURCE": "/etc/user/config/services",
 				"DEST": "/services",
 				"TYPE": "ro"
-				}
+				},
+				{
+                                 "SOURCE": "/var/run/docker.sock",
+                                 "DEST": "/var/run/docker.sock",
+                                 "TYPE": "rw"
+                                 },
+                                 {
+                                 "SOURCE": "/usr/bin/docker",
+                                 "DEST": "/usr/bin/docker",
+                                 "TYPE": "ro"
+                                 }
 				],
 			"PORTS": [ ],
 			"READYNESS": [
@@ -29,39 +39,14 @@
 			        {"HTTP": ""},
 				{"EXEC": "/ready.sh"}
 				],
-                        "ENVS": [
-                                {          
-                                "NAME": "CHAIN",
-                                "VALUE": "DOCKER-USER"
-                                }, 
-                                {          
-                                "NAME": "SOURCE_IP_1",
-                                "VALUE": "172.18.101.2"
-                                }, 
-                                {          
-                                "NAME": "SOURCE_IP_2",
-                                "VALUE": "172.18.102.2"
-                                }, 
-                                {          
-                                "NAME": "TARGET_IP",
-                                "VALUE": "172.18.103.2"
-                                }, 
-                                {          
-                                "NAME": "TYPE",
-                                "VALUE": "tcp"
-                                }, 
-                                {          
-                                "NAME": "TARGET_PORT_1",
-                                "VALUE": "80"
-                                }, 
-                                {          
-                                "NAME": "TARGET_PORT_2",
-                                "VALUE": "443"
-                                }, 
-                                {          
-                                "NAME": "COMMENT",
-                                "VALUE": "27dhuwth"
-                                }  
+                        "ENVS": [ 
+               			{ "CHAIN": "DOCKER-USER" },
+                                { "SOURCE": "public_backend" },
+                                { "TARGET": "smarthost_loadbalancer" },
+                                { "TYPE": "tcp" },
+                                { "TARGET_PORT_1": "80" },
+                                { "TARGET_PORT_2": "443" },
+                                { "COMMENT": "public-smarthost" }
                                 ], 
 			"EXTRA": "--privileged --rm",
 			"DEPEND": "null",
