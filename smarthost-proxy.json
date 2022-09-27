@@ -64,7 +64,7 @@
 			        {"HTTP": "8080"},
 				{"EXEC": "/ready.sh"}
 				],
-			"ENV_FILES": [ "/etc/system/config/proxy.json" ],
+				"ENV_FILES": [ "/etc/system/config/proxy.json" ],
 			"EXTRA": "--label ROLES=loadbalancer" ,
 			"DEPEND": [ "proxy-dns" ],
 			"START_ON_BOOT": "true",
@@ -73,7 +73,7 @@
 			"POST_START": [ "firewall-dns", "firewall-letsencrypt", "firewall-smarhost-loadbalancer" ]
 		},
 		{ 
-			"IMAGE": "registry.format.hu/nginx:1.21",
+			"IMAGE": "registry.format.hu/alpine/nginx:1.23",
 			"NAME": "smarthost_backend-1",
 			"ROLES": "smarthost-backend-proxy",
 			"MEMORY": "64M",
@@ -121,7 +121,7 @@
 			"POST_START": [ "firewall-backend" ]
 		},
 		{ 
-			"IMAGE": "registry.format.hu/nginx:1.21",
+			"IMAGE": "registry.format.hu/alpine/nginx:1.23",
 			"NAME": "smarthost_backend-2",
 			"ROLES": "smarthost-backend-proxy",
 			"MEMORY": "64M",
