@@ -46,7 +46,7 @@
                                 { "TYPE": "udp" },
                                 { "TARGET_PORT_1": "53" },
                                 { "TARGET_PORT_2": "67" },
-                                { "TARGET_PORT_2": "68" },
+                                { "TARGET_PORT_3": "68" },
                                 { "COMMENT": "smarthost_proxy_dns" }
                                 ], 
 			"EXTRA": "--privileged --rm",
