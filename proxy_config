@@ -15,7 +15,7 @@
         },
         "smarthost_loadbalancer": {
                 "letsencrypt": "letsencrypt",
-                "backend1": "smarthost_backend1",
-                "backend2": "smarthost_backend2"
+                "backend1": "smarthost_backend-1",
+                "backend2": "smarthost_backend-2"
         }
 }
