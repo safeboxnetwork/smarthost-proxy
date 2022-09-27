@@ -64,6 +64,7 @@
 			        {"HTTP": "8080"},
 				{"EXEC": "/ready.sh"}
 				],
+			"ENV_FILES": [ "/etc/system/config/proxy.json" ],
 			"EXTRA": "--label ROLES=loadbalancer" ,
 			"DEPEND": [ "proxy-dns" ],
 			"START_ON_BOOT": "true",
