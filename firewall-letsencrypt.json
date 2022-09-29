@@ -42,9 +42,9 @@
                         "ENVS": [ 
                			{ "CHAIN": "DOCKER-USER" },
                                 { "SOURCE": "smarthost_loadbalancer" },
-                                { "TARGET": "proxy_dns" },
+                                { "TARGET": "letsencrypt" },
                                 { "TYPE": "tcp" },
-                                { "TARGET_PORT_1": "80" },
+                                { "TARGET_PORT": "80" },
                                 { "COMMENT": "letsencrypt" }
                                 ], 
 			"EXTRA": "--privileged --rm",
