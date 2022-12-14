@@ -30,6 +30,7 @@
 		{ 
 			"IMAGE": "registry.format.hu/haproxy:2.5.4",
 			"NAME": "smarthost_loadbalancer-27dhuwth",
+			"UPDATE": "true",
 			"ROLES": "smarthost-frontend-proxy",
 			"MEMORY": "128M",
 			"IP": "172.18.103.2",
@@ -75,6 +76,7 @@
 		{ 
 			"IMAGE": "registry.format.hu/alpine/nginx:1.23",
 			"NAME": "smarthost_backend-1",
+			"UPDATE": "true",
 			"ROLES": "smarthost-backend-proxy",
 			"MEMORY": "64M",
 			"IP": "172.18.104.2",
@@ -123,6 +125,7 @@
 		{ 
 			"IMAGE": "registry.format.hu/alpine/nginx:1.23",
 			"NAME": "smarthost_backend-2",
+			"UPDATE": "true",
 			"ROLES": "smarthost-backend-proxy",
 			"MEMORY": "64M",
 			"IP": "172.18.105.2",

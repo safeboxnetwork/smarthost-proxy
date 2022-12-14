@@ -16,6 +16,7 @@
 		{ 
 			"IMAGE": "registry.format.hu/letsencrypt:latest",
 			"NAME": "letsencrypt",
+			"UPDATE": "true",
 			"MEMORY": "64M",
 			"IP": "172.18.254.254",
 			"NETWORK": "letsencrypt",
