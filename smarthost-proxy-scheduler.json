@@ -6,15 +6,15 @@
         "containers": [
                 {
                         "IMAGE": "registry.format.hu/proxy-scheduler:latest",
-                        "NAME": "proxy_scheduler_local-ifhiwhth",
-                        "MEMORY": "64M",
-                        "IP": "null",
+                        "NAME": "proxy_scheduler_local",
+                        "UPDATE": "true",
+			"MEMORY": "64M",
                         "NETWORK": "host",
                         "VOLUMES": [
                                 {
                                 "SOURCE": "/etc/user/config/smarthost-domains",
                                 "DEST": "/domains",
-                                "TYPE": "ro"
+                                "TYPE": "rw"
                                 },
                                 {
                                 "SOURCE": "/etc/ssl/keys",

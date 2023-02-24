@@ -8,7 +8,6 @@
 			"IMAGE": "registry.format.hu/firewall",
 			"NAME": "firewall",
 			"MEMORY": "64M",
-			"IP": "null",
 			"NETWORK": "host",
 			"SCALE": "0",
 			"VOLUMES": [
@@ -22,6 +21,11 @@
 				"DEST": "/services",
 				"TYPE": "ro"
 				},
+				{
+                                "SOURCE": "/etc/system/data/dns/hosts.local", 
+                                "DEST": "/etc/dns/hosts.local",
+                                "TYPE": "ro"
+                                },
 				{
                                  "SOURCE": "/var/run/docker.sock",
                                  "DEST": "/var/run/docker.sock",
@@ -41,7 +45,7 @@
 				],
                         "ENVS": [ 
                			{ "CHAIN": "DOCKER-USER" },
-                                { "SOURCE": "smarthost_loadbalancer" },
+                                { "SOURCE": "smarthostloadbalancer" },
                                 { "TARGET": "letsencrypt" },
                                 { "TYPE": "tcp" },
                                 { "TARGET_PORT": "80" },

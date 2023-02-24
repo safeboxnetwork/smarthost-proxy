@@ -6,9 +6,9 @@
 	"containers": [
 		{ 
 			"IMAGE": "registry.format.hu/firewall",
+			"UPDATE": "true",
 			"NAME": "firewall",
 			"MEMORY": "64M",
-			"IP": "null",
 			"NETWORK": "host",
 			"SCALE": "0",
 			"VOLUMES": [
@@ -22,6 +22,11 @@
 				"DEST": "/services",
 				"TYPE": "ro"
 				},
+				{
+                                "SOURCE": "/etc/system/data/dns/hosts.local", 
+                                "DEST": "/etc/dns/hosts.local",
+                                "TYPE": "ro"
+                                },
 				{
                                  "SOURCE": "/var/run/docker.sock",
                                  "DEST": "/var/run/docker.sock",
@@ -41,12 +46,12 @@
 				],
                         "ENVS": [ 
                			{ "CHAIN": "DOCKER-USER" },
-                                { "SOURCE": "smarthost_loadbalancer" },
-                                { "TARGET": "smarthost_backend" },
+                                { "SOURCE": "smarthostloadbalancer" },
+                                { "TARGET": "smarthostbackend" },
                                 { "TYPE": "tcp" },
                                 { "TARGET_PORT_1": "80" },
                                 { "TARGET_PORT_2": "443" },
-                                { "COMMENT": "smarthost-backend" }
+                                { "COMMENT": "smarthost loadbalancer access smarthost backends" }
                                 ], 
 			"EXTRA": "--privileged --rm",
 			"DEPEND": "null",

@@ -6,9 +6,9 @@
 	"containers": [
 		{ 
 			"IMAGE": "registry.format.hu/firewall",
+			"UDAPE": "true",
 			"NAME": "firewall",
 			"MEMORY": "64M",
-			"IP": "null",
 			"NETWORK": "host",
 			"SCALE": "0",
 			"VOLUMES": [
@@ -20,6 +20,11 @@
 				{
 				"SOURCE": "/etc/user/config/services",
 				"DEST": "/services",
+				"TYPE": "ro"
+				},
+				{
+				"SOURCE": "/etc/system/data/dns/hosts.local",
+				"DEST": "/etc/dns/hosts.local",
 				"TYPE": "ro"
 				},
 				{
@@ -41,20 +46,18 @@
 				],
                         "ENVS": [
                			{ "CHAIN": "DOCKER-USER" },
-                                { "SOURCE": "smarthost_loadbalancer" },
-                                { "TARGET": "proxy_dns" },
+                                { "SOURCE": "smarthostloadbalancer" },
+                                { "TARGET": "coredns" },
                                 { "TYPE": "udp" },
-                                { "TARGET_PORT_1": "53" },
-                                { "TARGET_PORT_2": "67" },
-                                { "TARGET_PORT_3": "68" },
-                                { "COMMENT": "smarthost_proxy_dns" }
+                                { "TARGET_PORT": "53" },
+                                { "COMMENT": "smarthost loadbalancer dns" }
                                 ], 
 			"EXTRA": "--privileged --rm",
 			"DEPEND": "null",
 			"START_ON_BOOT": "false",
-			"CMD": "null",
-			"PRE_START": "null",
-			"POST_START": "null"
+			"CMD": "",
+			"PRE_START": [],
+			"POST_START": []
 		}
 	]
 }

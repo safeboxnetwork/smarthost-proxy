@@ -29,13 +29,14 @@
 	"containers": [
 		{ 
 			"IMAGE": "registry.format.hu/haproxy:2.5.4",
-			"NAME": "smarthost_loadbalancer-27dhuwth",
+			"NAME": "smarthost_loadbalancer",
+			"SCALE": "",
+			"SELECTOR": "smarthostloadbalancer",
 			"UPDATE": "true",
 			"ROLES": "smarthost-frontend-proxy",
-			"MEMORY": "128M",
-			"IP": "172.18.103.2",
+			"MEMORY": "256M",
 			"NETWORK": "smarthost-loadbalancer",
-			"DNS": [ "proxy_dns" ],
+			"DNS": [ "coredns" ], 
                         "READYNESS": [
                                 {"tcp": "80"},
                                 {"HTTP": "8080"},
@@ -55,6 +56,11 @@
 				 ],	
 			"VOLUMES": [
 				{	
+				"SOURCE": "/etc/system/config/smarthost-proxy/loadbalancer/haproxy.cfg",
+				"DEST": "/etc/haproxy/haproxy.cfg",
+				"TYPE": "rw"
+				},
+				{	
 				"SOURCE": "/etc/system/log/smarthost-proxy/loadbalancer",
 				"DEST": "/var/log/haproxy",
 				"TYPE": "rw"
@@ -66,21 +72,22 @@
 				{"EXEC": "/ready.sh"}
 				],
 				"ENV_FILES": [ "/etc/system/config/proxy.json" ],
-			"EXTRA": "--label ROLES=loadbalancer" ,
-			"DEPEND": [ "proxy-dns" ],
+			"EXTRA": "--restart unless-stopped --log-opt max-size=500m --label ROLES=loadbalancer" ,
+			"DEPEND": [ ],
 			"START_ON_BOOT": "true",
 			"CMD": "null",
 			"PRE_START": [  ],
-			"POST_START": [ "firewall-dns", "firewall-letsencrypt", "firewall-smarhost-loadbalancer" ]
+			"POST_START": [ "firewall-smarthost-loadbalancer-dns", "firewall-letsencrypt", "firewall-smarthostloadbalancer-from-publicbackend" ]
 		},
 		{ 
-			"IMAGE": "registry.format.hu/alpine/nginx:1.23",
+			"IMAGE": "registry.format.hu/nginx:1.23.3",
 			"NAME": "smarthost_backend-1",
 			"UPDATE": "true",
 			"ROLES": "smarthost-backend-proxy",
 			"MEMORY": "64M",
-			"IP": "172.18.104.2",
 			"NETWORK": "smarthost_backend-1",
+			"DNS": [ "coredns" ], 
+			"SELECTOR": "smarthostbackend-1",
 			"PORTS": [
     				{
 				 "SOURCE": "null",
@@ -115,21 +122,22 @@
 			        {"HTTP": "8080"},
 				{"EXEC": "/ready.sh"}
 				],
-			"EXTRA": "null",
+			"EXTRA": "--restart unless-stopped",
 			"DEPEND": "null",
 			"START_ON_BOOT": "true",
 			"CMD": "null",
-			"PRE_START": "null",
-			"POST_START": [ "firewall-backend" ]
+			"PRE_START": ["firewall-smarthost-backend-dns"],
+			"POST_START": [ "firewall-smarthost-to-backend" ]
 		},
 		{ 
-			"IMAGE": "registry.format.hu/alpine/nginx:1.23",
+			"IMAGE": "registry.format.hu/nginx:1.23.3",
 			"NAME": "smarthost_backend-2",
 			"UPDATE": "true",
 			"ROLES": "smarthost-backend-proxy",
+			"DNS": [ "coredns" ], 
 			"MEMORY": "64M",
-			"IP": "172.18.105.2",
 			"NETWORK": "smarthost_backend-2",
+			"SELECTOR": "smarthostbackend-2",
 			"PORTS": [
     				{
 				 "SOURCE": "null",
@@ -164,12 +172,12 @@
 			        {"HTTP": "8080"},
 				{"EXEC": "/ready.sh"}
 				],
-			"EXTRA": "null",
+			"EXTRA": "--restart unless-stopped",
 			"DEPEND": "null",
 			"START_ON_BOOT": "true",
 			"CMD": "null",
-			"PRE_START": "null",
-			"POST_START": [ "firewall-backend" ]
+			"PRE_START": ["firewall-smarthost-backend-dns"],
+			"POST_START": [ "firewall-smarthost-to-backend" ]
 		}
 	]
 }
