@@ -12,6 +12,11 @@
                         "NETWORK": "host",
                         "VOLUMES": [
                                 {
+                                "SOURCE": "/etc/user/config/services/",
+                                "DEST": "/etc/user/config/services/",
+                                "TYPE": "ro"
+                                },
+                                {
                                 "SOURCE": "/etc/user/config/services/tmp",
                                 "DEST": "/tmp",
                                 "TYPE": "rw"
