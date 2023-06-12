@@ -27,6 +27,11 @@
                                 "TYPE": "rw"
                                 },
                                 {
+                                "SOURCE": "/etc/system/config/proxy.json",
+                                "DEST": "/etc/system/config/proxy.json",
+                                "TYPE": "ro"
+                                },
+                                {
                                 "SOURCE": "/etc/ssl/keys",
                                 "DEST": "/keys",
                                 "TYPE": "rw"
