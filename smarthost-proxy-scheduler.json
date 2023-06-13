@@ -22,6 +22,12 @@
                                 "TYPE": "ro"
                                 },
                                 {
+                                "SOURCE": "/etc/user/config/services/letsencrypt.json",
+                                "DEST": "/etc/user/config/services/letsencrypt.json",
+                                "TYPE": "ro"
+                                },
+
+                                {
                                 "SOURCE": "/etc/ssl/keys",
                                 "DEST": "/keys",
                                 "TYPE": "rw"
