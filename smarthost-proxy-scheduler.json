@@ -12,16 +12,6 @@
                         "NETWORK": "host",
                         "VOLUMES": [
                                 {
-                                "SOURCE": "/etc/user/config/services/",
-                                "DEST": "/etc/user/config/services/",
-                                "TYPE": "ro"
-                                },
-                                {
-                                "SOURCE": "/etc/user/config/services/tmp",
-                                "DEST": "/tmp",
-                                "TYPE": "rw"
-                                },
-                                {
                                 "SOURCE": "/etc/user/config/smarthost-domains",
                                 "DEST": "/domains",
                                 "TYPE": "rw"
