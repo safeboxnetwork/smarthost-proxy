@@ -107,7 +107,7 @@
 				"TYPE": "ro"
 				},
 				{	
-				"SOURCE": "/etc/ssl/keys",
+				"SOURCE": "/etc/system/data/ssl/keys",
 				"DEST": "/etc/ssl/keys",
 				"TYPE": "ro"
 				},
@@ -157,7 +157,7 @@
 				"TYPE": "ro"
 				},
 				{	
-				"SOURCE": "/etc/ssl/keys",
+				"SOURCE": "/etc/system/data/ssl/keys",
 				"DEST": "/etc/ssl/keys",
 				"TYPE": "ro"
 				},
