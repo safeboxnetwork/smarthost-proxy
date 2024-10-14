@@ -32,12 +32,12 @@
                                 "TYPE": "rw"
                                 },
                                 {
-                                "SOURCE": "/etc/ssl/keys",
+                                "SOURCE": "/etc/system/data/ssl/keys",
                                 "DEST": "/keys",
                                 "TYPE": "rw"
                                 },
                                 {
-                                "SOURCE": "/etc/ssl/certs/",
+                                "SOURCE": "/etc/system/data/ssl/certs/",
                                 "DEST": "/etc/ssl/certs/",
                                 "TYPE": "ro"
                                 },
