@@ -39,7 +39,7 @@
 			        {"HTTP": ""},
 				{"EXEC": "/ready.sh"}
 				],
-			"EXTRA": "--rm",
+			"EXTRA": "",
 			"DEPEND": "null",
 			"START_ON_BOOT": "false",
 			"CMD": "null",
