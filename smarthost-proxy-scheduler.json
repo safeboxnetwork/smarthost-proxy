@@ -5,7 +5,7 @@
         },
         "containers": [
                 {
-                        "IMAGE": "registry.format.hu/proxy-scheduler:latest",
+                        "IMAGE": "safebox/proxy-scheduler:latest",
                         "NAME": "proxy_scheduler_local",
                         "UPDATE": "true",
 			"MEMORY": "64M",

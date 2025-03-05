@@ -14,7 +14,7 @@
 	],
 	"containers": [
 		{ 
-			"IMAGE": "registry.format.hu/letsencrypt:latest",
+			"IMAGE": "safebox/letsencrypt:latest",
 			"NAME": "letsencrypt",
 			"UPDATE": "true",
 			"MEMORY": "64M",

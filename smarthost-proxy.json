@@ -28,7 +28,7 @@
 	],
 	"containers": [
 		{ 
-			"IMAGE": "registry.format.hu/haproxy:2.5.4",
+			"IMAGE": "safebox/haproxy",
 			"NAME": "smarthost_loadbalancer",
 			"SCALE": "",
 			"SELECTOR": "smarthostloadbalancer",
@@ -80,7 +80,7 @@
 			"POST_START": [ "firewall-smarthost-loadbalancer-dns", "firewall-letsencrypt", "firewall-smarthostloadbalancer-from-publicbackend" ]
 		},
 		{ 
-			"IMAGE": "registry.format.hu/nginx:1.23.3",
+			"IMAGE": "safebox/nginx",
 			"NAME": "smarthost_backend-1",
 			"UPDATE": "true",
 			"ROLES": "smarthost-backend-proxy",
@@ -130,7 +130,7 @@
 			"POST_START": [ "firewall-smarthost-to-backend" ]
 		},
 		{ 
-			"IMAGE": "registry.format.hu/nginx:1.23.3",
+			"IMAGE": "safebox/nginx",
 			"NAME": "smarthost_backend-2",
 			"UPDATE": "true",
 			"ROLES": "smarthost-backend-proxy",

@@ -1,7 +1,7 @@
 {
         "proxy_scheduler_local": {
 		"SERVICE_FILES": "/etc/user/config/services",
-                "DOCKER_REGISTRY_URL": "registry.format.hu",
+                "DOCKER_REGISTRY_URL": "safebox",
 		"GENERATE_CERTIFICATE": "true",
                 "LETSENCRYPT_URL": "letsencrypt.org",
                 "LETSENCRYPT_SERVICE_NAME": "letsencrypt.json",

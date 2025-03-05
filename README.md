@@ -21,7 +21,7 @@ The other firewall json files needed for various vpn connection between loadbala
  --volume /var/run/docker.sock:/var/run/docker.sock \
  --volume /usr/bin/docker:/usr/bin/docker:ro \
  --volume /etc/user/config/services/tmp:/services/tmp:rw \
- registry.format.hu/setup:latest public-proxy.json start
+ safebox/setup:latest public-proxy.json start
 
 ```
 
