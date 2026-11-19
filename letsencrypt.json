@@ -21,16 +21,21 @@
 			"SELECTOR": "letsencrypt",
 			"NETWORK": "letsencrypt",
 			"VOLUMES": [
-				{	
-				"SOURCE": "/etc/system/data/ssl/keys",
-				"DEST": "/etc/ssl/keys",
-				"TYPE": "rw"
-				},
-				{	
-				"SOURCE": "/etc/user/config/smarthost-domains",
-				"DEST": "/domains",
-				"TYPE": "ro"
-				}
+                {
+                    "SOURCE": "/etc/system/data/ssl/keys/",
+                    "DEST": "/acme.sh/",
+                    "TYPE": "rw"
+                },
+                {
+                    "SOURCE": "SHARED",
+                    "DEST": "/var/tmp/shared",
+                    "TYPE": "rw"
+                },
+                {
+                    "SOURCE": "/etc/user/config/domains",
+                    "DEST": "/domains",
+                    "TYPE": "ro"
+                }
 				],
 			"PORTS": [ ],
 			"ENV_FILES": [ "/etc/user/config/user.json" ],
