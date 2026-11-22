@@ -46,6 +46,11 @@
                                 "DEST": "/smarthost-proxy.json",
                                 "TYPE": "ro"
                                 },
+							    {
+								"SOURCE": "SHARED",
+								"DEST": "/var/tmp/shared",
+								"TYPE": "rw"
+				                },
                                 {
                                 "SOURCE": "/var/run/docker.sock",
                                 "DEST": "/var/run/docker.sock",
