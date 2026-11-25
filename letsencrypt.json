@@ -32,7 +32,7 @@
                     "TYPE": "rw"
                 },
                 {
-                    "SOURCE": "/etc/user/config/domains",
+                    "SOURCE": "/etc/user/config/smarthost-domains",
                     "DEST": "/domains",
                     "TYPE": "ro"
                 }
