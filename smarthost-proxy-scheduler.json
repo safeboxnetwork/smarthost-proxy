@@ -47,7 +47,7 @@
                                 "TYPE": "ro"
                                 },
 							    {
-								"SOURCE": "/var/tmp/shared",
+								"SOURCE": "SHARED",
 								"DEST": "/var/tmp/shared",
 								"TYPE": "rw"
 				                },
